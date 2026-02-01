@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Identity.Application/Identity.Application.csproj" />
+    <ProjectReference Include="../Identity.Domain/Identity.Domain.csproj" />
+    <ProjectReference Include="../../../BuildingBlocks/BuildingBlocks.csproj" />
+    <ProjectReference Include="../../Sales/Sales.Application/Sales.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" />
+  </ItemGroup>
+</Project>
