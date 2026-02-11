@@ -47,7 +47,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -58,7 +58,8 @@
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
-            "Microsoft.EntityFrameworkCore.Tools": "10.0.1"
+            "Microsoft.EntityFrameworkCore.Tools": "10.0.1",
+            "Swashbuckle.AspNetCore": "7.3.0"
           },
           "imports": [
             "net461",
@@ -79,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -547,7 +548,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -558,7 +559,8 @@
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
-            "Microsoft.EntityFrameworkCore.Tools": "10.0.1"
+            "Microsoft.EntityFrameworkCore.Tools": "10.0.1",
+            "Swashbuckle.AspNetCore": "7.3.0"
           },
           "imports": [
             "net461",
@@ -579,7 +581,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -1047,7 +1049,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -1070,7 +1072,8 @@
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
-            "Microsoft.EntityFrameworkCore.Tools": "10.0.1"
+            "Microsoft.EntityFrameworkCore.Tools": "10.0.1",
+            "Swashbuckle.AspNetCore": "7.3.0"
           },
           "imports": [
             "net461",
@@ -1088,7 +1091,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -1413,7 +1416,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0": {
@@ -1424,7 +1427,8 @@
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
-            "Microsoft.EntityFrameworkCore.Tools": "10.0.1"
+            "Microsoft.EntityFrameworkCore.Tools": "10.0.1",
+            "Swashbuckle.AspNetCore": "7.3.0"
           },
           "imports": [
             "net461",
@@ -1442,7 +1446,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

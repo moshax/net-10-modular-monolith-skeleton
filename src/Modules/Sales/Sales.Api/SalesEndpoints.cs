@@ -16,7 +16,7 @@ public static class SalesEndpoints
             var command = new CreateOrderCommand(request.OrderNo, request.CustomerName, request.Total, request.Status, request.CustomerId);
             var result = await useCase.HandleAsync(command, cancellationToken);
             return result.IsSuccess
-                ? Results.Created($"/sales/orders/{result.Value?.Id}", result.Value)
+                ? Results.Created($"/api/v1/sales/orders/{result.Value?.Id}", result.Value)
                 : Results.BadRequest(new { error = result.Error });
         });
 

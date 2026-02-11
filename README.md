@@ -1,38 +1,36 @@
 # Modular Monolith Skeleton (.NET 10)
 
-This repository contains a production-ready modular monolith skeleton with strict layering, EF Core code-first, and module boundaries.
+This repository contains a modular monolith backend with strict layering plus an Angular frontend workspace.
 
+## Architecture Overview
 
-Here’s a senior-architect view of the solution based on the code in this repo.
+- Modular monolith host in `src/App.Host`.
+- Business modules in `src/Modules`: `Identity`, `Sales`, `Inventory`.
+- Per-module layering: `Api -> Application -> Domain`, with `Infrastructure` implementing contracts.
+- Shared SQL Server database with schema-per-module.
+- CQRS-style application use cases (commands/queries), repository + unit of work.
+- Global exception middleware in `src/BuildingBlocks`.
 
-**Architecture overview**
+## API Conventions
 
--   **Modular monolith**: One executable host ([Program.cs](/# "src/App.Host/Program.cs")) composes three business modules (Identity, Sales, Inventory) living in the same process and solution, but separated by folder and project boundaries (src/Modules/*).
--   **Strict layering inside each module**: Each module is split into  Api,  Application,  Domain, and  Infrastructure  projects, enforcing dependencies inwards (API → Application → Domain; Infrastructure implements outward dependencies). See  [*.*.csproj](/# "src/Modules/*/*.*.csproj").
--   **Host as composition root**:  [App.Host](/# "App.Host")  wires modules into the DI container and maps endpoints via extension methods ([Program.cs](/# "src/App.Host/Program.cs")).
--   **Shared DB with per‑module schemas**: All modules use the same SQL Server connection, but each DbContext sets its own schema and owns its migrations ([*DbContext.cs](/# "src/Modules/*/*.Infrastructure/*DbContext.cs"), migrations in  src/Modules/*/*.Infrastructure/Migrations).
--   **Module‑level boundary with explicit contracts**: Repositories and UoW are defined in  Application  contracts and implemented in  Infrastructure. Cross‑module read access uses an explicit interface (IIdentityReadService) implemented by Identity infrastructure and consumed by Sales application ([Contracts.cs](/# "src/Modules/Sales/Sales.Application/Contracts.cs"),  [IdentityReadService.cs](/# "src/Modules/Identity/Identity.Infrastructure/IdentityReadService.cs")).
+- All endpoints are versioned under `/api/v1`.
+- Swagger/OpenAPI is enabled in Development at `/swagger`.
+- CORS policy `Frontend` allows:
+  - `http://localhost:4200`
+  - `https://localhost:4200`
 
-**Techniques & patterns used**
+Examples:
 
--   **Clean Architecture / Onion layering**: Domain models are isolated ([*.cs](/# "src/Modules/*/*.Domain/*.cs")) and contain no infrastructure concerns.
--   **Modular composition via DI**: Each module exposes a registration extension ([*ModuleRegistration.cs](/# "*ModuleRegistration.cs")) to keep composition centralized and explicit ([*ModuleRegistration.cs](/# "src/Modules/*/*.Infrastructure/*ModuleRegistration.cs")).
--   **Minimal APIs**: Lightweight endpoint definitions with route groups and handler injection ([*Endpoints.cs](/# "src/Modules/*/*.Api/*Endpoints.cs")).
--   **CQRS‑style use cases**: Application layer defines command/query use cases rather than controllers/services ([UseCases.cs](/# "src/Modules/*/*.Application/UseCases.cs")).
--   **Repository + Unit of Work**: Persistence contracts in Application with EF Core implementations in Infrastructure ([Contracts.cs](/# "Contracts.cs")  +  [*Repository.cs](/# "*Repository.cs")  +  *UnitOfWork  classes).
--   **EF Core code‑first**: Entity configurations via  IEntityTypeConfiguration<T>  and migrations per module ([*Configuration.cs](/# "*Configuration.cs"),  Migrations/*).
--   **Schema‑per‑module**:  HasDefaultSchema("identity"|"sales"|"inventory")  keeps module data separated in a single DB ([*DbContext.cs](/# "*DbContext.cs")).
--   **Validation**: FluentValidation is used for commands in the Application layer (Create*CommandValidator  in  [UseCases.cs](/# "UseCases.cs")).
--   **Result pattern**:  Result<T>  and  Error  types unify success/failure handling in use cases ([Result.cs](/# "src/BuildingBlocks/Result.cs"),  [Error.cs](/# "Error.cs")).
--   **Global exception handling**: Shared middleware in BuildingBlocks ([ExceptionHandlingMiddleware.cs](/# "src/BuildingBlocks/ExceptionHandlingMiddleware.cs")).
--   **DTOs/records**: Application layer exposes explicit DTOs via records ([Contracts.cs](/# "Contracts.cs")  files).
--   **Shared BuildingBlocks**: Small cross‑cutting abstractions (Entity,  Result, middleware) under  src/BuildingBlocks.
-
-If you want, I can also diagram the dependency graph or review the module boundaries for potential coupling (e.g., the Sales → Identity read service flow).
+- `POST /api/v1/identity/users`
+- `GET /api/v1/identity/users/{id}`
+- `POST /api/v1/sales/orders`
+- `GET /api/v1/sales/orders/{id}`
+- `POST /api/v1/inventory/products`
+- `GET /api/v1/inventory/products/{id}`
 
 ## Solution Structure
 
-```
+```text
 src/
   App.Host/
   BuildingBlocks/
@@ -52,29 +50,68 @@ src/
       Inventory.Application/
       Inventory.Domain/
       Inventory.Infrastructure/
+frontend/
+  web/ (Angular)
 ```
+
+## Run Locally
+
+Backend:
+
+```bash
+dotnet run --project src/App.Host
+```
+
+Default Development URLs from launch settings:
+
+- `https://localhost:61571`
+- `http://localhost:61572`
+
+Frontend:
+
+```bash
+cd frontend/web
+npm start
+```
+
+Angular dev server runs on `http://localhost:4200` and proxies `/api/*` to `https://localhost:61571` via `frontend/web/proxy.conf.json`.
+
+## OpenAPI Client Generation (Angular)
+
+The Angular app is configured with `ng-openapi-gen`:
+
+```bash
+cd frontend/web
+npm run generate:api-client
+```
+
+Prerequisite: backend must be running in Development so `https://localhost:61571/swagger/v1/swagger.json` is available.
+
+Generated client output:
+
+- `frontend/web/src/app/api-client`
 
 ## EF Core Migrations
 
-All modules use the same SQL Server database, each with its own schema and migrations in the Infrastructure project.
+All modules use one SQL Server database, each with its own schema and migrations in each module's Infrastructure project.
 
-### Identity
+Identity:
 
-```
+```bash
 dotnet ef migrations add Initial --project src/Modules/Identity/Identity.Infrastructure --startup-project src/App.Host --context Identity.Infrastructure.IdentityDbContext
 dotnet ef database update --project src/Modules/Identity/Identity.Infrastructure --startup-project src/App.Host --context Identity.Infrastructure.IdentityDbContext
 ```
 
-### Sales
+Sales:
 
-```
+```bash
 dotnet ef migrations add Initial --project src/Modules/Sales/Sales.Infrastructure --startup-project src/App.Host --context Sales.Infrastructure.SalesDbContext
 dotnet ef database update --project src/Modules/Sales/Sales.Infrastructure --startup-project src/App.Host --context Sales.Infrastructure.SalesDbContext
 ```
 
-### Inventory
+Inventory:
 
-```
+```bash
 dotnet ef migrations add Initial --project src/Modules/Inventory/Inventory.Infrastructure --startup-project src/App.Host --context Inventory.Infrastructure.InventoryDbContext
 dotnet ef database update --project src/Modules/Inventory/Inventory.Infrastructure --startup-project src/App.Host --context Inventory.Infrastructure.InventoryDbContext
 ```
