@@ -1,4 +1,4 @@
-using Inventory.Application;
+﻿using Inventory.Application;
 using Inventory.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,13 +10,13 @@ public sealed class ProductRepository(InventoryDbContext dbContext) : IProductRe
     {
         return await dbContext.Products
             .AsNoTracking()
-            .SingleOrDefaultAsync(product => product.Id == id, cancellationToken);
+            .SingleOrDefaultAsync(product => product.Id == id, cancellationToken).ConfigureAwait(true);
     }
 
     public async Task AddAsync(Product product, CancellationToken cancellationToken)
     {
         dbContext.Products.Add(product);
-        await Task.CompletedTask;
+        await Task.CompletedTask.ConfigureAwait(true);
     }
 }
 

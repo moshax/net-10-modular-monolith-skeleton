@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "+pfL8v6LVGU=",
+  "dgSpecHash": "AWJ7UvW6k8U=",
   "success": true,
   "projectFilePath": "G:\\Bernamji\\modular-monolith-skeleton\\modular-monolith-skeleton\\src\\Modules\\Inventory\\Inventory.Api\\Inventory.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmed\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
-    "C:\\Users\\Ahmed\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.0.0\\fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512"
+    "C:\\Users\\Ahmed\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.0.0\\fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
+    "C:\\Users\\Ahmed\\.nuget\\packages\\microsoft.codeanalysis.netanalyzers\\10.0.103\\microsoft.codeanalysis.netanalyzers.10.0.103.nupkg.sha512"
   ],
   "logs": []
 }

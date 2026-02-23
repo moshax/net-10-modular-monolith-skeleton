@@ -1,4 +1,4 @@
-using BuildingBlocks;
+﻿using BuildingBlocks;
 using Identity.Api;
 using Identity.Infrastructure;
 using Inventory.Api;
@@ -48,4 +48,8 @@ apiV1.MapInventoryEndpoints();
 
 app.Run();
 
+#pragma warning disable ASP0027 // Unnecessary public Program class declaration
+#pragma warning disable CA1515 
 public partial class Program;
+#pragma warning restore ASP0027 // Unnecessary public Program class declaration
+#pragma warning restore CA1515 // Unnecessary public Program class declaration

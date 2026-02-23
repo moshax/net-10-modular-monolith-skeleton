@@ -1,4 +1,4 @@
-using Inventory.Application;
+﻿using Inventory.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -14,7 +14,7 @@ public static class InventoryEndpoints
         group.MapPost("", async (CreateProductRequest request, CreateProductUseCase useCase, CancellationToken cancellationToken) =>
         {
             var command = new CreateProductCommand(request.Sku, request.Name, request.QtyOnHand);
-            var result = await useCase.HandleAsync(command, cancellationToken);
+            var result = await useCase.HandleAsync(command, cancellationToken).ConfigureAwait(true);
             return result.IsSuccess
                 ? Results.Created($"/api/v1/inventory/products/{result.Value?.Id}", result.Value)
                 : Results.BadRequest(new { error = result.Error });
@@ -22,7 +22,7 @@ public static class InventoryEndpoints
 
         group.MapGet("{id:guid}", async (Guid id, GetProductUseCase useCase, CancellationToken cancellationToken) =>
         {
-            var result = await useCase.HandleAsync(id, cancellationToken);
+            var result = await useCase.HandleAsync(id, cancellationToken).ConfigureAwait(true);
             return result.IsSuccess
                 ? Results.Ok(result.Value)
                 : Results.NotFound(new { error = result.Error });

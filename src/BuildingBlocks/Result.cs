@@ -1,8 +1,8 @@
-namespace BuildingBlocks;
+﻿namespace BuildingBlocks;
 
 public class Result
 {
-    protected Result(bool isSuccess, Error error)
+    protected Result(bool isSuccess, ApplicationError error)
     {
         IsSuccess = isSuccess;
         Error = error;
@@ -10,15 +10,15 @@ public class Result
 
     public bool IsSuccess { get; }
     public bool IsFailure => !IsSuccess;
-    public Error Error { get; }
+    public ApplicationError Error { get; }
 
-    public static Result Success() => new(true, Error.None);
-    public static Result Failure(Error error) => new(false, error);
+    public static Result Success() => new(true, ApplicationError.None);
+    public static Result Failure(ApplicationError error) => new(false, error);
 }
 
 public sealed class Result<T> : Result
 {
-    private Result(bool isSuccess, Error error, T? value)
+    private Result(bool isSuccess, ApplicationError error, T? value)
         : base(isSuccess, error)
     {
         Value = value;
@@ -26,6 +26,8 @@ public sealed class Result<T> : Result
 
     public T? Value { get; }
 
-    public static Result<T> Success(T value) => new(true, Error.None, value);
-    public static new Result<T> Failure(Error error) => new(false, error, default);
+#pragma warning disable CA1000 // Do not declare static members on generic types
+    public static Result<T> Success(T value) => new(true, ApplicationError.None, value);
+    public static new Result<T> Failure(ApplicationError error) => new(false, error, default);
+#pragma warning restore CA1000 // Do not declare static members on generic types
 }

@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sales.Domain;
 
@@ -8,6 +8,7 @@ public sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         builder.ToTable("Orders");
         builder.HasKey(order => order.Id);
         builder.Property(order => order.OrderNo).HasMaxLength(64).IsRequired();

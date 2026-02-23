@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Sales.Application;
 using Sales.Domain;
 
@@ -10,13 +10,13 @@ public sealed class OrderRepository(SalesDbContext dbContext) : IOrderRepository
     {
         return await dbContext.Orders
             .AsNoTracking()
-            .SingleOrDefaultAsync(order => order.Id == id, cancellationToken);
+            .SingleOrDefaultAsync(order => order.Id == id, cancellationToken).ConfigureAwait(true);
     }
 
     public async Task AddAsync(Order order, CancellationToken cancellationToken)
     {
         dbContext.Orders.Add(order);
-        await Task.CompletedTask;
+        await Task.CompletedTask.ConfigureAwait(true);
     }
 }
 

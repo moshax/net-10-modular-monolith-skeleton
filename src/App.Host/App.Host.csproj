@@ -1,9 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,4 +23,18 @@
     <ProjectReference Include="../Modules/Inventory/Inventory.Api/Inventory.Api.csproj" />
     <ProjectReference Include="../Modules/Inventory/Inventory.Infrastructure/Inventory.Infrastructure.csproj" />
   </ItemGroup>
+  <PropertyGroup>
+    <!-- Default is 'latest' for newer SDKs, but set explicitly for consistency across environments -->
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <!-- Choose the aggressiveness of rule enablement (you can tune this) -->
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+
+    <!-- Optional: promote warnings to errors in CI -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
 </Project>
+
+
+
+
