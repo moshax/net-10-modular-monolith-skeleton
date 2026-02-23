@@ -1,4 +1,4 @@
-using Inventory.Domain;
+﻿using Inventory.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,6 +8,7 @@ public sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         builder.ToTable("Products");
         builder.HasKey(product => product.Id);
         builder.Property(product => product.Sku).HasMaxLength(64).IsRequired();

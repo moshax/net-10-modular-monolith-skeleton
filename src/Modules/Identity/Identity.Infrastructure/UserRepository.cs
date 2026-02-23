@@ -1,4 +1,4 @@
-using Identity.Application;
+﻿using Identity.Application;
 using Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,13 +10,13 @@ public sealed class UserRepository(IdentityDbContext dbContext) : IUserRepositor
     {
         return await dbContext.Users
             .AsNoTracking()
-            .SingleOrDefaultAsync(user => user.Id == id, cancellationToken);
+            .SingleOrDefaultAsync(user => user.Id == id, cancellationToken).ConfigureAwait(true);
     }
 
     public async Task AddAsync(User user, CancellationToken cancellationToken)
     {
         dbContext.Users.Add(user);
-        await Task.CompletedTask;
+        await Task.CompletedTask.ConfigureAwait(true);
     }
 }
 

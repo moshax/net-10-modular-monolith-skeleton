@@ -8,9 +8,27 @@
     <ProjectReference Include="../../../BuildingBlocks/BuildingBlocks.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" />
   </ItemGroup>
+  <PropertyGroup>
+    <!-- Default is 'latest' for newer SDKs, but set explicitly for consistency across environments -->
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <!-- Choose the aggressiveness of rule enablement (you can tune this) -->
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+
+    <!-- Optional: promote warnings to errors in CI -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
 </Project>
+
+
+
+

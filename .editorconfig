@@ -1,0 +1,198 @@
+# ==========================================================
+# .NET 10 / Modern C# (.NET SDK analyzers) - Microsoft option set
+# Reference: https://learn.microsoft.com/dotnet/fundamentals/code-analysis/code-style-rule-options
+# (See: "Example EditorConfig file" and the options demonstrated there)
+# ==========================================================
+
+root = true
+
+# ----------------------------------------------------------
+# Core EditorConfig options
+# Ref: "Example EditorConfig file" -> "Core EditorConfig Options" :contentReference[oaicite:2]{index=2}
+# ----------------------------------------------------------
+[*]
+charset = utf-8-bom
+end_of_line = crlf
+insert_final_newlinev = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# ----------------------------------------------------------
+# C# code style & formatting rules
+# Ref: "Example EditorConfig file" on the Microsoft page :contentReference[oaicite:3]{index=3}
+# ----------------------------------------------------------
+[*.cs]
+
+#### Core EditorConfig Options (C# scope) :contentReference[oaicite:4]{index=4}
+tab_width = 4
+
+#### .NET Coding Conventions :contentReference[oaicite:5]{index=5}
+
+# Organize usings (formatting options) :contentReference[oaicite:6]{index=6}
+dotnet_separate_import_directive_groups = true:suggestion
+dotnet_sort_system_directives_first = true:suggestion
+
+# Optional: file header (if you want it)
+file_header_template = unset  # keep unset unless you enforce a standard header :contentReference[oaicite:7]{index=7}
+
+# this. qualification preferences :contentReference[oaicite:8]{index=8}
+dotnet_style_qualification_for_event = false:suggestion
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+
+# Language keywords vs BCL types :contentReference[oaicite:9]{index=9}
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+# Parentheses preferences :contentReference[oaicite:10]{index=10}
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:suggestion
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:suggestion
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:suggestion
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary:suggestion
+
+# Modifier preferences :contentReference[oaicite:11]{index=11}
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion
+
+# Expression-level preferences :contentReference[oaicite:12]{index=12}
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_namespace_match_folder = true:suggestion
+dotnet_style_operator_placement_when_wrapping = beginning_of_line:suggestion
+dotnet_style_prefer_auto_properties = true:suggestion
+dotnet_style_prefer_compound_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:suggestion
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+
+# Newer SDK option shown in the example: collection expressions :contentReference[oaicite:13]{index=13}
+dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion
+
+# Field preferences :contentReference[oaicite:14]{index=14}
+dotnet_style_readonly_field = true:suggestion
+
+# Parameter preferences (severity syntax shown in example) :contentReference[oaicite:15]{index=15}
+dotnet_code_quality_unused_parameters = all:silent
+
+# Suppression preferences :contentReference[oaicite:16]{index=16}
+dotnet_remove_unnecessary_suppression_exclusions = none:suggestion
+
+# Experimental newline preferences (as per example) :contentReference[oaicite:17]{index=17}
+dotnet_style_allow_multiple_blank_lines_experimental = true:suggestion
+dotnet_style_allow_statement_immediately_after_block_experimental = true:suggestion
+
+
+#### C# Coding Conventions :contentReference[oaicite:18]{index=18}
+
+# var preferences :contentReference[oaicite:19]{index=19}
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# Expression-bodied members :contentReference[oaicite:20]{index=20}
+csharp_style_expression_bodied_accessors = true:suggestion
+csharp_style_expression_bodied_indexers = true:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+csharp_style_expression_bodied_lambdas = true:suggestion
+csharp_style_expression_bodied_constructors = false:suggestion
+csharp_style_expression_bodied_local_functions = false:suggestion
+csharp_style_expression_bodied_methods = false:suggestion
+csharp_style_expression_bodied_operators = false:suggestion
+
+# Pattern matching preferences :contentReference[oaicite:21]{index=21}
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_prefer_extended_property_pattern = true:suggestion
+csharp_style_prefer_not_pattern = true:suggestion
+csharp_style_prefer_pattern_matching = true:suggestion
+csharp_style_prefer_switch_expression = true:suggestion
+
+# Null-checking preferences :contentReference[oaicite:22]{index=22}
+csharp_style_conditional_delegate_call = true:suggestion
+
+# Modifier preferences :contentReference[oaicite:23]{index=23}
+csharp_prefer_static_local_function = true:suggestion
+csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async:suggestion
+csharp_style_prefer_readonly_struct = true:suggestion
+csharp_style_prefer_readonly_struct_member = true:suggestion
+
+# Code-block preferences :contentReference[oaicite:24]{index=24}
+csharp_prefer_braces = true:warning
+csharp_prefer_simple_using_statement = true:suggestion
+
+# Namespace style (for modern .NET projects you typically want file-scoped)
+# The option itself is shown in the example; example default is block_scoped :contentReference[oaicite:25]{index=25}
+csharp_style_namespace_declarations = file_scoped:suggestion
+
+# Modern C# options shown in the example :contentReference[oaicite:26]{index=26}
+csharp_style_prefer_method_group_conversion = true:suggestion
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_style_prefer_top_level_statements = true:suggestion
+
+# Expression-level preferences :contentReference[oaicite:27]{index=27}
+csharp_prefer_simple_default_expression = true:suggestion
+csharp_style_deconstructed_variable_declaration = true:suggestion
+csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
+csharp_style_inlined_variable_declaration = true:suggestion
+csharp_style_prefer_index_operator = true:suggestion
+csharp_style_prefer_local_over_anonymous_function = true:suggestion
+csharp_style_prefer_null_check_over_type_check = true:suggestion
+csharp_style_prefer_range_operator = true:suggestion
+csharp_style_prefer_tuple_swap = true:suggestion
+csharp_style_prefer_utf8_string_literals = true:suggestion
+csharp_style_throw_expression = true:suggestion
+csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+csharp_style_unused_value_expression_statement_preference = discard_variable:suggestion
+
+# 'using' directive placement :contentReference[oaicite:28]{index=28}
+csharp_using_directive_placement = outside_namespace:suggestion
+
+# Experimental whitespace/newline options shown in example :contentReference[oaicite:29]{index=29}
+csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = true:suggestion
+csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = true:suggestion
+csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = true:suggestion
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = true:suggestion
+csharp_style_allow_embedded_statements_on_same_line_experimental = true:suggestion
+
+
+#### Naming rules (syntax family shown in example) :contentReference[oaicite:30]{index=30}
+
+# Types PascalCase
+dotnet_naming_rule.types_should_be_pascal_case.severity = warning
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+# Interfaces begin with I (common Microsoft convention; style syntax shown in example) :contentReference[oaicite:31]{index=31}
+dotnet_naming_rule.interfaces_should_begin_with_i.severity = warning
+dotnet_naming_rule.interfaces_should_begin_with_i.symbols = interfaces
+dotnet_naming_rule.interfaces_should_begin_with_i.style = begins_with_i
+
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_symbols.interfaces.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+# Private fields _camelCase (same naming-rule mechanism; Microsoft example demonstrates naming rules framework) :contentReference[oaicite:32]{index=32}
+dotnet_naming_rule.private_fields_should_be_underscore_camel_case.severity = warning
+dotnet_naming_rule.private_fields_should_be_underscore_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_underscore_camel_case.style = underscore_camel_case
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_style.underscore_camel_case.required_prefix = _
+dotnet_naming_style.underscore_camel_case.capitalization = camel_case

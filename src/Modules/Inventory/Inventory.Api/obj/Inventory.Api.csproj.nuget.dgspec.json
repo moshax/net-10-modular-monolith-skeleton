@@ -52,9 +52,19 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.103, )",
+              "versionCentrallyManaged": true
+            }
+          },
           "centralPackageVersions": {
             "FluentValidation": "12.0.0",
             "FluentValidation.DependencyInjectionExtensions": "12.0.0",
+            "Microsoft.CodeAnalysis.NetAnalyzers": "10.0.103",
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
@@ -553,9 +563,19 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.103, )",
+              "versionCentrallyManaged": true
+            }
+          },
           "centralPackageVersions": {
             "FluentValidation": "12.0.0",
             "FluentValidation.DependencyInjectionExtensions": "12.0.0",
+            "Microsoft.CodeAnalysis.NetAnalyzers": "10.0.103",
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
@@ -1064,11 +1084,19 @@
               "target": "Package",
               "version": "[12.0.0, )",
               "versionCentrallyManaged": true
+            },
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.103, )",
+              "versionCentrallyManaged": true
             }
           },
           "centralPackageVersions": {
             "FluentValidation": "12.0.0",
             "FluentValidation.DependencyInjectionExtensions": "12.0.0",
+            "Microsoft.CodeAnalysis.NetAnalyzers": "10.0.103",
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
@@ -1421,9 +1449,19 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.CodeAnalysis.NetAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.103, )",
+              "versionCentrallyManaged": true
+            }
+          },
           "centralPackageVersions": {
             "FluentValidation": "12.0.0",
             "FluentValidation.DependencyInjectionExtensions": "12.0.0",
+            "Microsoft.CodeAnalysis.NetAnalyzers": "10.0.103",
             "Microsoft.EntityFrameworkCore": "10.0.1",
             "Microsoft.EntityFrameworkCore.Design": "10.0.1",
             "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",

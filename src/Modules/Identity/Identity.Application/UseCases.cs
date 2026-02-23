@@ -1,4 +1,4 @@
-using BuildingBlocks;
+﻿using BuildingBlocks;
 using FluentValidation;
 using Identity.Domain;
 
@@ -22,16 +22,16 @@ public sealed class CreateUserUseCase(
 {
     public async Task<Result<UserDto>> HandleAsync(CreateUserCommand command, CancellationToken cancellationToken)
     {
-        var validation = await validator.ValidateAsync(command, cancellationToken);
+        var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(true);
         if (!validation.IsValid)
         {
             var message = string.Join("; ", validation.Errors.Select(error => error.ErrorMessage));
-            return Result<UserDto>.Failure(new Error("validation_failed", message));
+            return Result<UserDto>.Failure(new ApplicationError("validation_failed", message));
         }
-
+        ArgumentNullException.ThrowIfNull(command);
         var user = new User(Guid.NewGuid(), command.Email, command.PasswordHash, true, DateTimeOffset.UtcNow);
-        await repository.AddAsync(user, cancellationToken);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await repository.AddAsync(user, cancellationToken).ConfigureAwait(true);
+        await unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(true);
         return Result<UserDto>.Success(new UserDto(user.Id, user.Email, user.IsActive, user.CreatedAt));
     }
 }
@@ -40,9 +40,9 @@ public sealed class GetUserUseCase(IUserRepository repository)
 {
     public async Task<Result<UserDto>> HandleAsync(Guid id, CancellationToken cancellationToken)
     {
-        var user = await repository.GetByIdAsync(id, cancellationToken);
+        var user = await repository.GetByIdAsync(id, cancellationToken).ConfigureAwait(true);
         return user is null
-            ? Result<UserDto>.Failure(new Error("not_found", "User not found."))
+            ? Result<UserDto>.Failure(new ApplicationError("not_found", "User not found."))
             : Result<UserDto>.Success(new UserDto(user.Id, user.Email, user.IsActive, user.CreatedAt));
     }
 }

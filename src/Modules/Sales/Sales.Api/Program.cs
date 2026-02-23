@@ -1,9 +1,12 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Web
 {
+#pragma warning disable CA1515 // Static holder types should be Static or NotInheritable
+#pragma warning disable CA1052 
     public class Program
+
     {
         public static void Main(string[] args)
         {
@@ -28,3 +31,5 @@ namespace Api.Web
         }
     }
 }
+#pragma warning restore CA1515 // Static holder types should be Static or NotInheritable
+#pragma warning restore CA1052

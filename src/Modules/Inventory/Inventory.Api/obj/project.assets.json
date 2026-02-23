@@ -31,6 +31,9 @@
           }
         }
       },
+      "Microsoft.CodeAnalysis.NetAnalyzers/10.0.103": {
+        "type": "package"
+      },
       "BuildingBlocks/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -106,6 +109,45 @@
         "lib/net8.0/FluentValidation.DependencyInjectionExtensions.xml"
       ]
     },
+    "Microsoft.CodeAnalysis.NetAnalyzers/10.0.103": {
+      "sha512": "s2+qTvC9YUsor9PIlWZ6cNiyb17ze/UqrQDRHaFeyyxuEstYvzxYMklJPnVnDKuxK9Q75Xwzlq5XrLNMcyzgAQ==",
+      "type": "package",
+      "path": "microsoft.codeanalysis.netanalyzers/10.0.103",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "ThirdPartyNotices.txt",
+        "analyzers/dotnet/Microsoft.CodeAnalysis.NetAnalyzers.dll",
+        "analyzers/dotnet/Microsoft.CodeAnalysis.NetAnalyzers.xml",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.xml",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/de/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/es/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/fr/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/it/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/ja/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/ko/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/pl/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/pt-BR/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/ru/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/tr/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.VisualBasic.NetAnalyzers.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.VisualBasic.NetAnalyzers.xml",
+        "analyzers/dotnet/zh-Hans/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "analyzers/dotnet/zh-Hant/Microsoft.CodeAnalysis.NetAnalyzers.resources.dll",
+        "documentation/Analyzer Configuration.md",
+        "documentation/Microsoft.CodeAnalysis.NetAnalyzers.md",
+        "documentation/Microsoft.CodeAnalysis.NetAnalyzers.sarif",
+        "documentation/README.md",
+        "microsoft.codeanalysis.netanalyzers.10.0.103.nupkg.sha512",
+        "microsoft.codeanalysis.netanalyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "BuildingBlocks/1.0.0": {
       "type": "project",
       "path": "../../../BuildingBlocks/BuildingBlocks.csproj",
@@ -125,7 +167,8 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "BuildingBlocks >= 1.0.0",
-      "Inventory.Application >= 1.0.0"
+      "Inventory.Application >= 1.0.0",
+      "Microsoft.CodeAnalysis.NetAnalyzers >= 10.0.103"
     ]
   },
   "packageFolders": {
@@ -188,9 +231,19 @@
     "frameworks": {
       "net10.0": {
         "targetAlias": "net10.0",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.NetAnalyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.0.103, )",
+            "versionCentrallyManaged": true
+          }
+        },
         "centralPackageVersions": {
           "FluentValidation": "12.0.0",
           "FluentValidation.DependencyInjectionExtensions": "12.0.0",
+          "Microsoft.CodeAnalysis.NetAnalyzers": "10.0.103",
           "Microsoft.EntityFrameworkCore": "10.0.1",
           "Microsoft.EntityFrameworkCore.Design": "10.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",

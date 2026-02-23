@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Sales.Domain;
 
 namespace Sales.Infrastructure;
@@ -9,6 +9,7 @@ public sealed class SalesDbContext(DbContextOptions<SalesDbContext> options) : D
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        ArgumentNullException.ThrowIfNull(modelBuilder, nameof(modelBuilder));
         modelBuilder.HasDefaultSchema("sales");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(SalesDbContext).Assembly);
     }

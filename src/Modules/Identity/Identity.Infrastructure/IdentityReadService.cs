@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Sales.Application;
 
 namespace Identity.Infrastructure;
@@ -9,6 +9,6 @@ public sealed class IdentityReadService(IdentityDbContext dbContext) : IIdentity
     {
         return await dbContext.Users
             .AsNoTracking()
-            .AnyAsync(user => user.Id == userId, cancellationToken);
+            .AnyAsync(user => user.Id == userId, cancellationToken).ConfigureAwait(true);
     }
 }

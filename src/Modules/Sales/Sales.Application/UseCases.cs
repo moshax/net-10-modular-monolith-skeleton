@@ -1,4 +1,4 @@
-using BuildingBlocks;
+﻿using BuildingBlocks;
 using FluentValidation;
 using Sales.Domain;
 
@@ -25,25 +25,25 @@ public sealed class CreateOrderUseCase(
 {
     public async Task<Result<OrderDto>> HandleAsync(CreateOrderCommand command, CancellationToken cancellationToken)
     {
-        var validation = await validator.ValidateAsync(command, cancellationToken);
+        var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(true);
         if (!validation.IsValid)
         {
             var message = string.Join("; ", validation.Errors.Select(error => error.ErrorMessage));
-            return Result<OrderDto>.Failure(new Error("validation_failed", message));
+            return Result<OrderDto>.Failure(new ApplicationError("validation_failed", message));
         }
-
+        ArgumentNullException.ThrowIfNull(command);
         if (command.CustomerId.HasValue)
         {
-            var exists = await identityReadService.UserExistsAsync(command.CustomerId.Value, cancellationToken);
+            var exists = await identityReadService.UserExistsAsync(command.CustomerId.Value, cancellationToken).ConfigureAwait(true);
             if (!exists)
             {
-                return Result<OrderDto>.Failure(new Error("customer_not_found", "Customer not found."));
+                return Result<OrderDto>.Failure(new ApplicationError("customer_not_found", "Customer not found."));
             }
         }
 
         var order = new Order(Guid.NewGuid(), command.OrderNo, command.CustomerName, command.Total, command.Status, DateTimeOffset.UtcNow);
-        await repository.AddAsync(order, cancellationToken);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await repository.AddAsync(order, cancellationToken).ConfigureAwait(true);
+        await unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(true);
 
         return Result<OrderDto>.Success(new OrderDto(order.Id, order.OrderNo, order.CustomerName, order.Total, order.Status, order.CreatedAt));
     }
@@ -53,9 +53,9 @@ public sealed class GetOrderUseCase(IOrderRepository repository)
 {
     public async Task<Result<OrderDto>> HandleAsync(Guid id, CancellationToken cancellationToken)
     {
-        var order = await repository.GetByIdAsync(id, cancellationToken);
+        var order = await repository.GetByIdAsync(id, cancellationToken).ConfigureAwait(true);
         return order is null
-            ? Result<OrderDto>.Failure(new Error("not_found", "Order not found."))
+            ? Result<OrderDto>.Failure(new ApplicationError("not_found", "Order not found."))
             : Result<OrderDto>.Success(new OrderDto(order.Id, order.OrderNo, order.CustomerName, order.Total, order.Status, order.CreatedAt));
     }
 }

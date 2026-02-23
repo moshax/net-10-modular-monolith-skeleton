@@ -1,4 +1,4 @@
-using Identity.Domain;
+﻿using Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,6 +8,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
         builder.ToTable("Users");
         builder.HasKey(user => user.Id);
         builder.Property(user => user.Email).HasMaxLength(320).IsRequired();

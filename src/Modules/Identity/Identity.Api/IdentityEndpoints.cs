@@ -1,4 +1,4 @@
-using Identity.Application;
+﻿using Identity.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -13,7 +13,7 @@ public static class IdentityEndpoints
 
         group.MapPost("", async (CreateUserRequest request, CreateUserUseCase useCase, CancellationToken cancellationToken) =>
         {
-            var result = await useCase.HandleAsync(new CreateUserCommand(request.Email, request.PasswordHash), cancellationToken);
+            var result = await useCase.HandleAsync(new CreateUserCommand(request.Email, request.PasswordHash), cancellationToken).ConfigureAwait(true);
             return result.IsSuccess
                 ? Results.Created($"/api/v1/identity/users/{result.Value?.Id}", result.Value)
                 : Results.BadRequest(new { error = result.Error });
@@ -21,7 +21,7 @@ public static class IdentityEndpoints
 
         group.MapGet("{id:guid}", async (Guid id, GetUserUseCase useCase, CancellationToken cancellationToken) =>
         {
-            var result = await useCase.HandleAsync(id, cancellationToken);
+            var result = await useCase.HandleAsync(id, cancellationToken).ConfigureAwait(true);
             return result.IsSuccess
                 ? Results.Ok(result.Value)
                 : Results.NotFound(new { error = result.Error });

@@ -1,4 +1,4 @@
-using Identity.Domain;
+﻿using Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure;
@@ -10,6 +10,7 @@ public sealed class IdentityDbContext(DbContextOptions<IdentityDbContext> option
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("identity");
+        ArgumentNullException.ThrowIfNull(modelBuilder, nameof(modelBuilder));
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDbContext).Assembly);
     }
 }
