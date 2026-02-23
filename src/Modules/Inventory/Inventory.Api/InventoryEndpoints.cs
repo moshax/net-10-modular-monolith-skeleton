@@ -16,7 +16,7 @@ public static class InventoryEndpoints
             var command = new CreateProductCommand(request.Sku, request.Name, request.QtyOnHand);
             var result = await useCase.HandleAsync(command, cancellationToken);
             return result.IsSuccess
-                ? Results.Created($"/inventory/products/{result.Value?.Id}", result.Value)
+                ? Results.Created($"/api/v1/inventory/products/{result.Value?.Id}", result.Value)
                 : Results.BadRequest(new { error = result.Error });
         });
 

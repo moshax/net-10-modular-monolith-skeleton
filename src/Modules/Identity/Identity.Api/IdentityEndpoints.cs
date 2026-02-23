@@ -15,7 +15,7 @@ public static class IdentityEndpoints
         {
             var result = await useCase.HandleAsync(new CreateUserCommand(request.Email, request.PasswordHash), cancellationToken);
             return result.IsSuccess
-                ? Results.Created($"/identity/users/{result.Value?.Id}", result.Value)
+                ? Results.Created($"/api/v1/identity/users/{result.Value?.Id}", result.Value)
                 : Results.BadRequest(new { error = result.Error });
         });
 
